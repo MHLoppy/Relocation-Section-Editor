@@ -62,8 +62,8 @@
             this.staLblCurrentSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.staLblMaxSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.staPbSize = new System.Windows.Forms.ToolStripProgressBar();
-            this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.staPbSizeLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.mnuMain.SuspendLayout();
             this.sptMain.Panel1.SuspendLayout();
             this.sptMain.Panel2.SuspendLayout();
@@ -166,7 +166,7 @@
             // 
             this.sptMain.Panel2.Controls.Add(this.grpRelocation);
             this.sptMain.Size = new System.Drawing.Size(796, 416);
-            this.sptMain.SplitterDistance = 228;
+            this.sptMain.SplitterDistance = 238;
             this.sptMain.TabIndex = 1;
             // 
             // grpPage
@@ -175,7 +175,7 @@
             this.grpPage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpPage.Location = new System.Drawing.Point(0, 0);
             this.grpPage.Name = "grpPage";
-            this.grpPage.Size = new System.Drawing.Size(228, 416);
+            this.grpPage.Size = new System.Drawing.Size(238, 416);
             this.grpPage.TabIndex = 0;
             this.grpPage.TabStop = false;
             this.grpPage.Text = "Page";
@@ -195,7 +195,7 @@
             this.lvPage.Location = new System.Drawing.Point(3, 16);
             this.lvPage.MultiSelect = false;
             this.lvPage.Name = "lvPage";
-            this.lvPage.Size = new System.Drawing.Size(222, 397);
+            this.lvPage.Size = new System.Drawing.Size(230, 397);
             this.lvPage.TabIndex = 0;
             this.lvPage.UseCompatibleStateImageBehavior = false;
             this.lvPage.View = System.Windows.Forms.View.Details;
@@ -213,7 +213,7 @@
             // 
             // colCount
             // 
-            this.colCount.Text = "# items";
+            this.colCount.Text = "# Items";
             this.colCount.Width = 50;
             // 
             // cmnuPages
@@ -359,7 +359,7 @@
             // staPbSizeLabel
             // 
             this.staPbSizeLabel.Name = "staPbSizeLabel";
-            this.staPbSizeLabel.Size = new System.Drawing.Size(200, 17);
+            this.staPbSizeLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // frmMain
             // 
