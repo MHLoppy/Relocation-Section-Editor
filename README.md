@@ -2,7 +2,7 @@
 
 An editor for the relocation table in Portable Executable (Windows PE) files.
 
-![](./screenshot-01.png)
+![](./screenshot-02.png)
 
 ### Notes
 
