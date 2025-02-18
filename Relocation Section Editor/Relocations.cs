@@ -389,7 +389,7 @@ namespace Relocation_Section_Editor
         /// Obtain the Size of Relocation section into the RAM
         /// </summary>
         /// <returns>The virtual size</returns>
-        public uint GetVirtuallSize()
+        public uint GetVirtualSize()
         {
             return virtualSize;
         }

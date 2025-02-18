@@ -31,7 +31,9 @@ namespace Relocation_Section_Editor
 
         private void mnuMainHelpAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This program has been coded by gta126");
+            string msg = "This program has been coded by gta126, with minor changes by MHLoppy.";
+            string caption = "About";
+            MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void mnuMainFileOpen_Click(object sender, EventArgs e)
@@ -81,28 +83,35 @@ namespace Relocation_Section_Editor
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show("File not found");
+                string msg = "File not found.";
+                string caption = "Error";
+                MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (InvalidOperationException ex)
             {
+                string msg = "";
+                string caption = "Error";
+
                 switch (ex.Message)
                 {
                     case "MZ":
-                        MessageBox.Show("MZ Header not found");
+                        msg = "MZ Header not found.";
                         break;
                     case "PE":
-                        MessageBox.Show("PE Header not found");
+                        msg = "PE Header not found.";
                         break;
                     case "X86":
-                        MessageBox.Show("Is not a 32bits executable");
+                        msg = "Is not a 32bits executable.";
                         break;
                     case "RAW":
-                        MessageBox.Show("No relocation table in this file");
+                        msg = "No relocation table in this file.";
                         break;
                     default:
-                        MessageBox.Show("Unknown error");
+                        msg = "Unknown error.";
                         break;
                 }
+
+                MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -142,7 +151,9 @@ namespace Relocation_Section_Editor
                 return;
 
             Relocations.Reloc reloc = (Relocations.Reloc)lvRelocation.SelectedItems[0].Tag;
-            if (MessageBox.Show("Are you sure to delete the relocation address \"" + (baseAddress + reloc.offset) + "\" ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
+            string msg = "Are you sure to delete the relocation address \"" + (baseAddress + reloc.offset) + "\"?";
+            string caption = "Confirmation";
+            if (MessageBox.Show(msg, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
                 return;
 
             rel.DeleteRelocation(baseAddress + reloc.offset);
@@ -176,12 +187,19 @@ namespace Relocation_Section_Editor
 
         private void RefreshSize()
         {
-            staLblCurrentSize.Text = "Current size: 0x" + rel.GetVirtuallSize().ToString("X8");
+            staLblCurrentSize.Text = "Current size: 0x" + rel.GetVirtualSize().ToString("X8");
             staLblMaxSize.Text = "Max size: 0x" + rel.GetRawSize().ToString("X8");
 
-            staPbSize.Minimum = 0;
-            staPbSize.Maximum = (int)rel.GetRawSize();
-            staPbSize.Value = (int)rel.GetVirtuallSize();
+            int min = 0;
+            int max = (int)rel.GetRawSize();
+            int value = (int)rel.GetVirtualSize();
+            int remaining = max - value;
+
+            staPbSize.Minimum = min;
+            staPbSize.Maximum = max;
+            staPbSize.Value = value;
+
+            staPbSizeLabel.Text = "(" + remaining + " bytes left)";
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -200,7 +218,9 @@ namespace Relocation_Section_Editor
             if (lvPage.SelectedItems.Count < 1)
                 return;
 
-            if (MessageBox.Show("Are you sure to delete this page ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == System.Windows.Forms.DialogResult.No)
+            string msg = "Are you sure to delete this page?";
+            string caption = "Confirmation";
+            if (MessageBox.Show(msg, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
                 return;
 
             foreach (ListViewItem item in lvRelocation.Items)
@@ -223,24 +243,28 @@ namespace Relocation_Section_Editor
                 return;
 
             int code = rel.AddRelocation(frm.GetAddress(), frm.GetRelocType());
+            string msg = "";
+            string caption = "Error";
 
             switch (code)
             {
                 case -1:
-                    MessageBox.Show("This address is already in the relocation table");
+                    msg = "This address is already in the relocation table.";
+                    MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
                 case 0:
-                    MessageBox.Show("Cannot add this address (0x" + frm.GetAddress().ToString("X8") + ")");
+                    msg = "Cannot add this address (0x" + frm.GetAddress().ToString("X8") + ").";
+                    MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
                 case 1:
                 case 2:
                     RefreshData();
                     break;
                 default:
-                    MessageBox.Show("Unknown error");
+                    msg = "Unknown error.";
+                    MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     break;
             }
-            
         }
 
         private void mnuRelocationsEdit_Click(object sender, EventArgs e)
@@ -251,12 +275,14 @@ namespace Relocation_Section_Editor
             Relocations.Reloc reloc = (Relocations.Reloc)lvRelocation.SelectedItems[0].Tag;
             frmEditRelocation frm = new frmEditRelocation(baseAddress + reloc.offset, reloc.type);
 
-            if (frm.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+            if (frm.ShowDialog() != DialogResult.OK)
                 return;
 
             if (!rel.EditRelocation(frm.GetOldAddress(), frm.GetNewAddress(), frm.GetRelocType()))
             {
-                MessageBox.Show("Cannot edit this address");
+                string msg = "Cannot edit this address.";
+                string caption = "Error";
+                MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -266,14 +292,20 @@ namespace Relocation_Section_Editor
         private void mnuMainFileSave_Click(object sender, EventArgs e)
         {
             if (!rel.WriteRelocations())
-                MessageBox.Show("File not saved");
+            {
+                string msg = "File not saved.";
+                string caption = "Error";
+                MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (rel != null && rel.IsNotSaved)
             {
-                if (MessageBox.Show("Would you really exit this program without save the data ?", "Not Saved", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.No)
+                string msg = "Are you sure you want to exit the editor without saving the changes that have been made?";
+                string caption = "Unsaved Changes";
+                if (MessageBox.Show(msg, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) == DialogResult.No)
                     e.Cancel = true;
             }
         }
@@ -338,9 +370,19 @@ namespace Relocation_Section_Editor
                 return;
 
             if (!rel.WriteRelocations(dlgSave.FileName))
-                MessageBox.Show("File not saved");
+            {
+                string msg = "Failed to write the relocation section into the file.";
+                string caption = "File Not Saved";
+                MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else
+            {
+                string msg = "Relocation section successfully written into the file.";
+                string caption = "File Saved";
+                MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 this.Text = "Relocation Section Editor - " + rel.GetPath();
+            }
         }
     }
 }

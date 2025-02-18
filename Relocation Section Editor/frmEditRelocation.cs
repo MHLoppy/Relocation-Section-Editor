@@ -44,7 +44,9 @@ namespace Relocation_Section_Editor
         {
             if (!uint.TryParse(txtNewAddress.Text, System.Globalization.NumberStyles.AllowHexSpecifier, null, out newAddress))
             {
-                MessageBox.Show("\"" + txtNewAddress.Text.ToUpper() + "\" isn't a valid address");
+                string msg = "\"" + txtNewAddress.Text.ToUpper() + "\" isn't a valid address";
+                string caption = "Invalid Address";
+                MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

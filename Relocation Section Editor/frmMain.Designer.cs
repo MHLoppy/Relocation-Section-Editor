@@ -33,6 +33,7 @@
             this.mnuMainFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMainFileOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMainFileSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMainFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuMainFileExit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMainHelp = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,8 +62,8 @@
             this.staLblCurrentSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.staLblMaxSize = new System.Windows.Forms.ToolStripStatusLabel();
             this.staPbSize = new System.Windows.Forms.ToolStripProgressBar();
-            this.mnuMainFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
+            this.staPbSizeLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mnuMain.SuspendLayout();
             this.sptMain.Panel1.SuspendLayout();
             this.sptMain.Panel2.SuspendLayout();
@@ -101,7 +102,7 @@
             // 
             this.mnuMainFileOpen.Name = "mnuMainFileOpen";
             this.mnuMainFileOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.mnuMainFileOpen.Size = new System.Drawing.Size(191, 22);
+            this.mnuMainFileOpen.Size = new System.Drawing.Size(195, 22);
             this.mnuMainFileOpen.Text = "&Open...";
             this.mnuMainFileOpen.Click += new System.EventHandler(this.mnuMainFileOpen_Click);
             // 
@@ -109,20 +110,29 @@
             // 
             this.mnuMainFileSave.Name = "mnuMainFileSave";
             this.mnuMainFileSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.mnuMainFileSave.Size = new System.Drawing.Size(191, 22);
+            this.mnuMainFileSave.Size = new System.Drawing.Size(195, 22);
             this.mnuMainFileSave.Text = "&Save";
             this.mnuMainFileSave.Click += new System.EventHandler(this.mnuMainFileSave_Click);
+            // 
+            // mnuMainFileSaveAs
+            // 
+            this.mnuMainFileSaveAs.Name = "mnuMainFileSaveAs";
+            this.mnuMainFileSaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.mnuMainFileSaveAs.Size = new System.Drawing.Size(195, 22);
+            this.mnuMainFileSaveAs.Text = "Save &As...";
+            this.mnuMainFileSaveAs.Click += new System.EventHandler(this.mnuMainFileSaveAs_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(188, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(192, 6);
             // 
             // mnuMainFileExit
             // 
             this.mnuMainFileExit.Name = "mnuMainFileExit";
             this.mnuMainFileExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.mnuMainFileExit.Size = new System.Drawing.Size(191, 22);
+            this.mnuMainFileExit.Size = new System.Drawing.Size(195, 22);
             this.mnuMainFileExit.Text = "&Exit";
             this.mnuMainFileExit.Click += new System.EventHandler(this.mnuMainFileExit_Click);
             // 
@@ -137,7 +147,7 @@
             // mnuMainHelpAbout
             // 
             this.mnuMainHelpAbout.Name = "mnuMainHelpAbout";
-            this.mnuMainHelpAbout.Size = new System.Drawing.Size(152, 22);
+            this.mnuMainHelpAbout.Size = new System.Drawing.Size(107, 22);
             this.mnuMainHelpAbout.Text = "&About";
             this.mnuMainHelpAbout.Click += new System.EventHandler(this.mnuMainHelpAbout_Click);
             // 
@@ -194,12 +204,12 @@
             // colPageRVA
             // 
             this.colPageRVA.Text = "Page RVA";
-            this.colPageRVA.Width = 75;
+            this.colPageRVA.Width = 80;
             // 
             // colBlockSize
             // 
             this.colBlockSize.Text = "Block Size";
-            this.colBlockSize.Width = 75;
+            this.colBlockSize.Width = 80;
             // 
             // colCount
             // 
@@ -213,26 +223,26 @@
             this.toolStripSeparator3,
             this.cmnuPagesDelete});
             this.cmnuPages.Name = "cmnuPages";
-            this.cmnuPages.Size = new System.Drawing.Size(173, 54);
+            this.cmnuPages.Size = new System.Drawing.Size(159, 54);
             // 
             // cmnuPagesAdd
             // 
             this.cmnuPagesAdd.Name = "cmnuPagesAdd";
             this.cmnuPagesAdd.ShortcutKeys = System.Windows.Forms.Keys.Insert;
-            this.cmnuPagesAdd.Size = new System.Drawing.Size(172, 22);
+            this.cmnuPagesAdd.Size = new System.Drawing.Size(158, 22);
             this.cmnuPagesAdd.Text = "&Add";
             this.cmnuPagesAdd.Click += new System.EventHandler(this.mnuAdd_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(169, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(155, 6);
             // 
             // cmnuPagesDelete
             // 
             this.cmnuPagesDelete.Name = "cmnuPagesDelete";
             this.cmnuPagesDelete.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
-            this.cmnuPagesDelete.Size = new System.Drawing.Size(172, 22);
+            this.cmnuPagesDelete.Size = new System.Drawing.Size(158, 22);
             this.cmnuPagesDelete.Text = "&Delete";
             this.cmnuPagesDelete.Click += new System.EventHandler(this.cmnuPagesDelete_Click);
             // 
@@ -270,7 +280,7 @@
             // colOffset
             // 
             this.colOffset.Text = "Offset";
-            this.colOffset.Width = 70;
+            this.colOffset.Width = 80;
             // 
             // colType
             // 
@@ -285,13 +295,13 @@
             this.toolStripSeparator2,
             this.cmnuRelocationsDelete});
             this.cmnuRelocations.Name = "cmnuRelocations";
-            this.cmnuRelocations.Size = new System.Drawing.Size(153, 98);
+            this.cmnuRelocations.Size = new System.Drawing.Size(132, 76);
             // 
             // cmnuRelocationsAdd
             // 
             this.cmnuRelocationsAdd.Name = "cmnuRelocationsAdd";
             this.cmnuRelocationsAdd.ShortcutKeys = System.Windows.Forms.Keys.Insert;
-            this.cmnuRelocationsAdd.Size = new System.Drawing.Size(152, 22);
+            this.cmnuRelocationsAdd.Size = new System.Drawing.Size(131, 22);
             this.cmnuRelocationsAdd.Text = "&Add";
             this.cmnuRelocationsAdd.Click += new System.EventHandler(this.mnuAdd_Click);
             // 
@@ -299,20 +309,20 @@
             // 
             this.cmnuRelocationsEdit.Name = "cmnuRelocationsEdit";
             this.cmnuRelocationsEdit.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.cmnuRelocationsEdit.Size = new System.Drawing.Size(152, 22);
+            this.cmnuRelocationsEdit.Size = new System.Drawing.Size(131, 22);
             this.cmnuRelocationsEdit.Text = "&Edit";
             this.cmnuRelocationsEdit.Click += new System.EventHandler(this.mnuRelocationsEdit_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(128, 6);
             // 
             // cmnuRelocationsDelete
             // 
             this.cmnuRelocationsDelete.Name = "cmnuRelocationsDelete";
             this.cmnuRelocationsDelete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.cmnuRelocationsDelete.Size = new System.Drawing.Size(152, 22);
+            this.cmnuRelocationsDelete.Size = new System.Drawing.Size(131, 22);
             this.cmnuRelocationsDelete.Text = "&Delete";
             this.cmnuRelocationsDelete.Click += new System.EventHandler(this.cmuRelocationsDelete_Click);
             // 
@@ -321,7 +331,8 @@
             this.staInfo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.staLblCurrentSize,
             this.staLblMaxSize,
-            this.staPbSize});
+            this.staPbSize,
+            this.staPbSizeLabel});
             this.staInfo.Location = new System.Drawing.Point(0, 440);
             this.staInfo.Name = "staInfo";
             this.staInfo.Size = new System.Drawing.Size(796, 22);
@@ -337,7 +348,7 @@
             // staLblMaxSize
             // 
             this.staLblMaxSize.Name = "staLblMaxSize";
-            this.staLblMaxSize.Size = new System.Drawing.Size(54, 17);
+            this.staLblMaxSize.Size = new System.Drawing.Size(55, 17);
             this.staLblMaxSize.Text = "Max size:";
             // 
             // staPbSize
@@ -345,14 +356,10 @@
             this.staPbSize.Name = "staPbSize";
             this.staPbSize.Size = new System.Drawing.Size(100, 16);
             // 
-            // mnuMainFileSaveAs
+            // staPbSizeLabel
             // 
-            this.mnuMainFileSaveAs.Name = "mnuMainFileSaveAs";
-            this.mnuMainFileSaveAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.S)));
-            this.mnuMainFileSaveAs.Size = new System.Drawing.Size(191, 22);
-            this.mnuMainFileSaveAs.Text = "Save &As...";
-            this.mnuMainFileSaveAs.Click += new System.EventHandler(this.mnuMainFileSaveAs_Click);
+            this.staPbSizeLabel.Name = "staPbSizeLabel";
+            this.staPbSizeLabel.Size = new System.Drawing.Size(200, 17);
             // 
             // frmMain
             // 
@@ -420,6 +427,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuMainFileSave;
         private System.Windows.Forms.ToolStripMenuItem mnuMainFileSaveAs;
         private System.Windows.Forms.SaveFileDialog dlgSave;
+        private System.Windows.Forms.ToolStripStatusLabel staPbSizeLabel;
     }
 }
 
