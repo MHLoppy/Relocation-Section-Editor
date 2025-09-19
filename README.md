@@ -6,10 +6,10 @@ An editor for the relocation table in Portable Executable (Windows PE) files.
 
 ### Notes
 
-- This is a slightly modified version of the code published by Christophe Mohimont and credited to gta126 (whether these are the same person is not explicitly clear).
+- This is a slightly modified version of the code [published by Christophe Mohimont (mohic)](https://github.com/mohic/Relocation-Section-Editor) and credited to gta126 (whether these are the same person is not explicitly clear).
 - Assumes the base address of the program being edited (i.e., does not necessarily start addresses at 0x0).
 - Supports adding, editing, and deleting entries, but doesn't support extending the table size etc.
-- Only works on 32-bit programs; you can try [Viacheslav Vasilyev's version](https://github.com/mohic/Relocation-Section-Editor/pull/1) for experimental 64-bit support.
+- Only works on 32-bit programs; you can try [Viacheslav Vasilyev (avoidik)'s version](https://github.com/mohic/Relocation-Section-Editor/pull/1) for experimental 64-bit support.
 
 ### License
 
